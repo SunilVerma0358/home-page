@@ -214,16 +214,6 @@
     position: relative;
 }
 
-.div::after {
-    position: absolute;
-    content: '';
-    width: 2px;
-    height: 60px;
-    right: 0;
-    margin-left: 40px;
-    background-color: #FFFFFF;
-}
-
 .button1 {
     color: #2C49FE;
     font-size: 8px;
@@ -268,6 +258,26 @@
     top: 68%;
     left: 33%;
     background-color: #01C8FF;
+}
+
+nav ul li a {
+    position: relative;
+}
+
+nav ul li a::before {
+    content: '';
+    position: absolute;
+    background: #fff;
+    height: 2px;
+    width: 0%;
+    bottom: 0;
+    left: 50%;
+    transition: all 300ms linear;
+}
+
+nav ul li a:hover::before {
+    width: 100%;
+    left: 0%;
 }
 
 .line1 {
@@ -333,7 +343,7 @@
     border: 1px solid #2c49ff;
     padding-top: 48px;
     color: #FFFFFF;
-    transition: all linear 1s;
+    transition: all linear 500ms;
 }
 
 .gap_30 {
@@ -495,9 +505,14 @@
 
 .box_shadow {
     border-radius: 5px;
-    background: #FFF;
+    background: #fff;
     padding: 13px;
     box-shadow: 2px 9px 32px 0px rgba(0, 0, 0, 0.06);
+    transition: all linear 500ms;
+}
+
+.box_shadow:hover {
+    background-color: #f0f1f1;
 }
 
 .h5_text {
@@ -511,6 +526,11 @@
     padding-left: 20px;
 }
 
+
+/* .box_shadow:hover .h5_text {
+    color: #FFF;
+} */
+
 .p1_text {
     color: rgba(0, 0, 0, 0.70);
     font-size: 12px;
@@ -521,6 +541,12 @@
     padding-top: 5px;
     padding-left: 20px;
 }
+
+
+/* 
+.box_shadow:hover .p1_text {
+    color: #FFF;
+} */
 
 .p2_text {
     color: rgba(0, 0, 0, 0.70);
@@ -577,18 +603,24 @@
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
     margin-right: 12px;
     margin-top: 12px;
+    resize: none;
+    outline: none;
+    color: #4d4d4d;
 }
 
 .input1 {
     width: 98%;
     padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
     margin-top: 12px;
     margin-right: 12px;
+    resize: none;
+    outline: none;
+    color: #4d4d4d;
 }
 
 .h4_text {
@@ -684,10 +716,6 @@ ul li a {
     text-align: left;
 }
 
-.ul li a :hover {
-    text-decoration: 3px solid blue underline;
-}
-
 .text {
     font-family: 'Poppins';
     font-size: 14px;
@@ -701,7 +729,6 @@ ul li a {
     width: 100%;
     height: 100%;
     background-color: #18205c;
-    text-align: center;
 }
 
 .p_box {
@@ -709,9 +736,8 @@ ul li a {
     font-family: 'Poppins';
     font-size: 16px;
     font-weight: 700;
-    padding: 14px;
-    text-align: center;
-    max-width: 12px;
+    display: flex;
+    align-items: center;
 }
 
 .gap_20 {
@@ -732,7 +758,10 @@ ul li a {
     width: 25px;
     height: 25px;
     cursor: pointer;
-    margin-top: 18px;
+    position: fixed;
+    top: 2%;
+    right: 2%;
+    z-index: 3;
 }
 
 .icon_box span {
@@ -765,20 +794,27 @@ ul li a {
     margin-top: 20px;
 }
 
+.input_text {
+    color: #4d4d4d;
+    outline: none;
+}
+
 @media(max-width:992px) {
     .my_nav {
         flex-direction: column;
         position: fixed;
         bottom: 0;
+        top: 0%;
         right: -100%;
         width: 100%;
-        height: calc(100vh - 47px);
+        /* height: calc(100vh - 47px); */
+        height: 100%;
         padding-left: 0;
+        margin-top: -40px;
         justify-content: center;
         transform: translate(-50% -50%);
         transition: all linear 400ms;
         background-color: rgb(168, 168, 234);
-        margin-top: 45px;
         z-index: 2;
     }
     input[type="checkbox"]:checked~ul {
@@ -849,15 +885,23 @@ ul li a {
     .md_div {
         position: relative;
     }
-    .md_div::after {
+    .row1::before {
         position: absolute;
         content: '';
         width: 2px;
         height: 100%;
-        right: 0;
-        margin-left: 40px;
+        right: 50%;
+        left: 50%;
         background-color: #FFFFFF;
-        text-align: center;
+    }
+    .row1::after {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 2px;
+        top: 47%;
+        left: 0;
+        background-color: #FFFFFF;
     }
     .md_h1 {
         font-size: 40px;
@@ -980,5 +1024,24 @@ ul li a {
     }
     .lg_justify-content-center {
         justify-content: left;
+    }
+    .row1::before {
+        content: unset;
+    }
+    .row1::after {
+        content: unset;
+    }
+}
+
+@media (min-width:1200px) {
+    .col_xl_3 {
+        width: 25%;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+    .col_xl_4 {
+        width: 33.33%;
+        padding-left: 12px;
+        padding-right: 12px;
     }
 }
